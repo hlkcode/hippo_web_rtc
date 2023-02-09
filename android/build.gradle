@@ -1,0 +1,49 @@
+group 'com.hippo.hippo_web_rtc' // library level
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.1.2'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+      //  maven { url 'https://jitpack.io' } // added nd commented by me
+        flatDir{
+            dirs('libs')
+        }
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 31
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion 21
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+}
+
+dependencies {
+    //implementation 'com.github.webrtc-sdk:android:104.5112.03'
+    implementation(name: 'libwebrtc', ext: 'aar')
+    implementation "com.twilio:audioswitch:1.1.5"
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
